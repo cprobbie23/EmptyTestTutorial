@@ -148,6 +148,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\Data2.cs" />
     <Compile Include="App_Start\IoCConfig.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Models\User.cs" />

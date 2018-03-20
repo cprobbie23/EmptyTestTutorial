@@ -1,14 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Spike_TESTS.App_Data;
 using Spike_TESTS.Models;
+using Spike_TESTS.Services;
+//using spike_tests.app_data;
 
 namespace Spike_TESTS.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
-            return null;
+            var viewModel = new HomeViewModel();
+            var userService = new UserService();
+            viewModel.Users = userService.ListUsers();
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -20,6 +27,7 @@ namespace Spike_TESTS.Controllers
 
     public class HomeViewModel
     {
+
         //For the list
         public IEnumerable<User> Users { get; set; }
 
@@ -28,4 +36,6 @@ namespace Spike_TESTS.Controllers
         public string LastName { get; set; }
         public string Address { get; set; }
     }
+
+    
 }
