@@ -7,26 +7,37 @@ namespace Spike_TESTS.Services
 {
     public class UserService : IUserService
     {
-       
         public List<User> ListUsers()
         {
             return Data.Users
                 .OrderBy(o => o.FirstName)
                 .Where(u => u.Status == UserStatus.Active)
                 .ToList();
-            //return SortedList;
-            //return Data.Users.ToList();
         }
-        
-        
-        
-    }
 
-    public interface IUserService
-    {
+
 
     }
 }
+
+public class UserService2 : IUserService
+{
+    public List<User> ListUsers()
+    {
+        return Data2.Users
+            .OrderBy(o => o.FirstName)
+            .Where(u => u.Status == UserStatus.Active)
+            .ToList();
+    }
+    
+}
+
+public interface IUserService
+{
+    List<User> ListUsers();
+
+}
+
 
 public class MYparent
 {

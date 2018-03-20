@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Spike_TESTS.Services;
 
 namespace Spike_TESTS
 {
@@ -14,9 +15,12 @@ namespace Spike_TESTS
             builder.RegisterAssemblyTypes(typeof(MvcApplication).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces();
-            builder.RegisterAssemblyTypes(typeof(MvcApplication).Assembly)
-                .Where(t => t.Name.EndsWith("Service"))
-                .AsImplementedInterfaces();
+            //builder.RegisterAssemblyTypes(typeof(MvcApplication).Assembly)
+            //    .Where(t => t.Name.EndsWith("Service"))
+            //    .AsImplementedInterfaces();
+
+            builder.RegisterType<UserService2>().As<IUserService>();
+
             builder.RegisterAssemblyTypes(typeof(MvcApplication).Assembly)
                 .Where(t => t.Name.EndsWith("Helper"))
                 .AsImplementedInterfaces();

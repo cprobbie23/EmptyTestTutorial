@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Spike_TESTS.App_Data;
 using Spike_TESTS.Models;
 using Spike_TESTS.Services;
 //using spike_tests.app_data;
@@ -9,12 +8,17 @@ namespace Spike_TESTS.Controllers
 {
     public class HomeController : Controller
     {
-        [HttpGet]
+        private IUserService _userService;
+
+        public HomeController(IUserService userService)
+        {
+            _userService = userService;
+        }
         public ActionResult Index()
         {
             var viewModel = new HomeViewModel();
-            var userService = new UserService();
-            viewModel.Users = userService.ListUsers();
+            
+            viewModel.Users = _userService.ListUsers();
             return View(viewModel);
         }
 
