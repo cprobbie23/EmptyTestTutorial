@@ -19,7 +19,7 @@ namespace Spike_TESTS
             //    .Where(t => t.Name.EndsWith("Service"))
             //    .AsImplementedInterfaces();
 
-            builder.RegisterType<UserService2>().As<IUserService>();
+            //builder.RegisterType<UserService2>().As<IUserService>();
 
             builder.RegisterAssemblyTypes(typeof(MvcApplication).Assembly)
                 .Where(t => t.Name.EndsWith("Helper"))

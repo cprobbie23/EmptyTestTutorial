@@ -7,6 +7,8 @@ namespace Spike_TESTS.Tests.Unit.Infrastructure
 {
     public static class ActionResultExtension 
     {
+        public static string DefaultMVCViewName = string.Empty;
+
         public static T Model<T>(this ActionResult result) where T : class
         {
             if (!(result is ViewResultBase))

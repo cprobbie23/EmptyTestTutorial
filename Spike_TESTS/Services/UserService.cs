@@ -1,84 +1,37 @@
-﻿using Spike_TESTS.App_Data;
-using Spike_TESTS.Models;
+﻿using Spike_TESTS.Models;
+using Spike_TESTS.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Spike_TESTS.Services
 {
+    public interface IUserService
+    {
+        List<User> GetUsers();
+        void Save(User user);
+    }
+
     public class UserService : IUserService
     {
-        public List<User> ListUsers()
+        private readonly IUserRepository userRepo;
+
+        public UserService(IUserRepository userRepo)
         {
-            return Data.Users
-                .OrderBy(o => o.FirstName)
-                .Where(u => u.Status == UserStatus.Active)
-                .ToList();
+            this.userRepo = userRepo;
         }
 
+        public List<User> GetUsers()
+        {
+            return userRepo.GetAllUsers()
+                    .OrderBy(a => a.FirstName)
+                    .Take(10)
+                    .ToList();
+        }
 
-
-    }
-}
-
-public class UserService2 : IUserService
-{
-    public List<User> ListUsers()
-    {
-        return Data2.Users
-            .OrderBy(o => o.FirstName)
-            .Where(u => u.Status == UserStatus.Active)
-            .ToList();
-    }
-    
-}
-
-public interface IUserService
-{
-    List<User> ListUsers();
-
-}
-
-
-public class MYparent
-{
-    public string _value2;
-}
-
-public static class Extentions
-{
-    public static string AddNumberEnd(this string strin, int value)
-    {
-        return strin + value.ToString();
-    }
-
-    public static string AddHelloAtTheEnd(this string strin)
-    {
-        return strin + "hello";
-    }
-
-}
-
-public class MycClass : MYparent
-{
-    int _classVar;
-
-    public void main()
-    {
-        //var result = AddNumberToString("aaa", 123);
-        var result = "asdasd".AddNumberEnd(123).AddHelloAtTheEnd();
-
-        //console.write(result);
-    }
-
-    public string AddNumberToString(string strin, int value)
-    {
-        return strin + value.ToString();
-    }
-
-    private string MyOtherMethd(int something)
-    {
-        _classVar = something;
-        
-        return something.ToString();
-    }
+        public void Save(User user)
+        {
+            throw new NotImplementedException();
+        }
+    }    
 }

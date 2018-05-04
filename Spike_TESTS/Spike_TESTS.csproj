@@ -150,6 +150,7 @@
   <ItemGroup>
     <Compile Include="App_Data\Data2.cs" />
     <Compile Include="App_Start\IoCConfig.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -161,7 +162,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Data\Data.cs" />

@@ -14,32 +14,39 @@ namespace Spike_TESTS.Controllers
         {
             _userService = userService;
         }
+
+
         public ActionResult Index()
         {
-            var viewModel = new HomeViewModel();
-            
-            viewModel.Users = _userService.ListUsers();
-            return View(viewModel);
+            var model = _userService.GetUsers();
+
+            return View(new HomeViewModel {
+                List = model
+            });
         }
 
         [HttpPost]
-        public ActionResult Save(HomeViewModel model)
+        public ActionResult Save(NewUserViewModel model)
         {
+            _userService.Save(new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            });
             return null;
         }
     }
 
     public class HomeViewModel
     {
-
-        //For the list
-        public IEnumerable<User> Users { get; set; }
-
-        //For the form
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
+        public object List { get; set; }
     }
 
-    
+    public class NewUserViewModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+
 }
